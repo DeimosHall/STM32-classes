@@ -58,7 +58,7 @@ static void MX_GPIO_Init(void);
 void boton(void);
 
 #define mascarab6ab3 (uint32_t) 0b1111000
-uint32_t disp7segs[] = {0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x67};
+uint32_t disp7segs[] = {0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x67,0x79};
 uint32_t valor = 0, temporal = 0, ba = 1, bp = 1;
 
 /* USER CODE END 0 */
@@ -98,24 +98,24 @@ int main(void) {
   /* USER CODE BEGIN WHILE */
   while (1) {
 
-	  // Program 5
-	  //Esto va en el main
+	  // Program 5 Contador decimal de 7 segmentos con incremento por boton por flanco de bajada
+	  /*
 	  boton();
 	  temporal=(GPIOB->ODR)&mascarab6ab3; //La mascara 1111000 es usada para no afectar b3 a b6
-	  GPIOB->ODR=temporal | (disp7segs[valor]<<7); //El patron del display se recorre 7 bits para los pines correctos
+	  GPIOB->ODR=temporal | (disp7segs[valor]<<7); //El patron del display se recorre 7 bits para los pines correctos */
 
-	  // Program 4
+	  // Program 4 Contador decimal de 7 segmentos con incremento por boton por flanco de subida
 	  /*
 	  ba = HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_3);
-	  if (ba == 0 && bp == 1) { //Detecta flanco de bajada
+	  if (ba == 1 && bp == 0) { //Detecta flanco de bajada
 		  valor++;
 		  if (valor > 9) valor = 0;
 	  	  HAL_Delay(50);
 	  }
 	  temporal = (GPIOB -> ODR) & mascarab6ab3; //La mascara 1111000 es usada para no afectar b3 a b6
 	  GPIOB -> ODR = temporal | (disp7segs[valor] << 7); //El patron del display se recorre 7 bits para los pines correctos
-	  bp = ba;
-	  */
+	  bp = ba; */
+
 
 	  // Program 3
 	  /*
@@ -126,13 +126,25 @@ int main(void) {
 	  GPIOB->ODR=temporal | (disp7segs[valor]<<7); //El patron del display se recorre 7 bits para los pines correctos
 	  */
 
-	  // Program 2
+	  // Program 2 con error
 	  /*
 	  valor = GPIOB -> IDR; //Leemos el PUERTOB
-	  valor = (valor >> 3) & 0x0f;//Recorremos 3 bits derecha y enmascaramos los 4 bits menos significativos
+	  valor = (valor >> 3) & 0x0f; //Recorremos 3 bits derecha y enmascaramos los 4 bits menos significativos
+	  temporal = (GPIOB -> ODR) & mascarab6ab3; //La mascara 1111000 es usada para no afectar b3 a b6
+	  if (valor << 3 <= 10) {
+		  GPIOB -> ODR = temporal | (disp7segs[valor] << 7);
+	  } else {
+		  GPIOB -> ODR = temporal | (disp7segs[10] << 7);
+	  } */
+
+	  // Program 2 con error
+
+	  valor = GPIOB -> IDR; //Leemos el PUERTOB
+	  valor = (valor >> 3) & 0x0f; //Recorremos 3 bits derecha y enmascaramos los 4 bits menos significativos
+	  if (valor > 9) valor = 10;
 	  temporal = (GPIOB -> ODR) & mascarab6ab3; //La mascara 1111000 es usada para no afectar b3 a b6
 	  GPIOB -> ODR = temporal | (disp7segs[valor] << 7); //El patron del display se recorre 7 bits paralos pines correctos
-	  */
+
 
 	  // Program 1
 	  /*
@@ -155,7 +167,7 @@ void boton(void) {
 			valor++;
 			if (valor>9) valor=0;
 		}
-		HAL_Delay(100); //Estado estable
+		HAL_Delay(50); //Estado estable
 	}
 	bp=ba;
 }
