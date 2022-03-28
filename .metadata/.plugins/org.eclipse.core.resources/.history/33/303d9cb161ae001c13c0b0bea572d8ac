@@ -181,23 +181,25 @@ static void MX_GPIO_Init(void)
 
 /* USER CODE BEGIN 4 */
 void boton(void) {
-	ba = HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_4);
-	if (ba == 1 && bp == 0) { //Detecta flanco de subida
-	valor--;
-	if (valor > 9) valor = 0;
-	HAL_Delay(300);
+	ba=HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_4);
+	if (ba!=bp) {
+		if (bp) { //if (bp==1) ocurrio flanco de bajada
+			valor--;
+			if (valor>9) valor=0;
+		}
+		HAL_Delay(50); //Estado estable
 	}
-	bp = ba;
+	bp=ba;
+
 }
 
 void btnUp(void) {
 	ba = HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_5);
-	if (ba == 1 && bp == 0) { //Detecta flanco de subida
-	valor++;
-	if (valor > 9) valor = 0;
-	HAL_Delay(300);
-	}
-	bp = ba;
+		if (ba == 1 && bp == 0) { //Detecta flanco de subida
+		valor++;
+		if (valor > 9) valor = 0;
+		HAL_Delay(50);
+		}
 }
 /* USER CODE END 4 */
 

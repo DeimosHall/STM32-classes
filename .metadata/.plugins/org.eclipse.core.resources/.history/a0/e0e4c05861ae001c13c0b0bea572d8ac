@@ -48,8 +48,6 @@
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
-void boton(void);
-void btnUp(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -97,7 +95,6 @@ int main(void)
   while (1) {
     /* USER CODE END WHILE */
 	boton();
-	btnUp();
 	//temporal=(GPIOB->ODR)&mascara; //La mascara 1111000 es usada para no afectar b3 a b6
 	GPIOB->ODR=(disp7segs[valor]<<4); //El patron del display se recorre 7 bits para los pines correctos */
     /* USER CODE BEGIN 3 */
@@ -181,23 +178,25 @@ static void MX_GPIO_Init(void)
 
 /* USER CODE BEGIN 4 */
 void boton(void) {
-	ba = HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_4);
-	if (ba == 1 && bp == 0) { //Detecta flanco de subida
-	valor--;
-	if (valor > 9) valor = 0;
-	HAL_Delay(300);
+	ba=HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_4);
+	if (ba!=bp) {
+		if (bp) { //if (bp==1) ocurrio flanco de bajada
+			valor--;
+			if (valor>9) valor=0;
+		}
+		HAL_Delay(50); //Estado estable
 	}
-	bp = ba;
+	bp=ba;
+
 }
 
 void btnUp(void) {
 	ba = HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_5);
-	if (ba == 1 && bp == 0) { //Detecta flanco de subida
-	valor++;
-	if (valor > 9) valor = 0;
-	HAL_Delay(300);
-	}
-	bp = ba;
+		if (ba == 1 && bp == 0) { //Detecta flanco de subida
+		valor++;
+		if (valor > 9) valor = 0;
+		HAL_Delay(50);
+		}
 }
 /* USER CODE END 4 */
 

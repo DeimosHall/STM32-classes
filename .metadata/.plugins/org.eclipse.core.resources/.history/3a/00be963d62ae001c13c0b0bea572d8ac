@@ -185,7 +185,7 @@ void boton(void) {
 	if (ba == 1 && bp == 0) { //Detecta flanco de subida
 	valor--;
 	if (valor > 9) valor = 0;
-	HAL_Delay(300);
+	HAL_Delay(200);
 	}
 	bp = ba;
 }
@@ -195,7 +195,7 @@ void btnUp(void) {
 	if (ba == 1 && bp == 0) { //Detecta flanco de subida
 	valor++;
 	if (valor > 9) valor = 0;
-	HAL_Delay(300);
+	HAL_Delay(200);
 	}
 	bp = ba;
 }

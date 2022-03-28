@@ -183,11 +183,11 @@ static void MX_GPIO_Init(void)
 void boton(void) {
 	ba = HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_4);
 	if (ba == 1 && bp == 0) { //Detecta flanco de subida
-	valor--;
+	valor++;
 	if (valor > 9) valor = 0;
-	HAL_Delay(300);
+	HAL_Delay(50);
 	}
-	bp = ba;
+	//bp = ba;
 }
 
 void btnUp(void) {
@@ -195,9 +195,9 @@ void btnUp(void) {
 	if (ba == 1 && bp == 0) { //Detecta flanco de subida
 	valor++;
 	if (valor > 9) valor = 0;
-	HAL_Delay(300);
+	HAL_Delay(50);
 	}
-	bp = ba;
+	//bp = ba;
 }
 /* USER CODE END 4 */
 
