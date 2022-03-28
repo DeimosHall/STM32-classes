@@ -107,7 +107,7 @@ int main(void) {
 	  // Program 4 Contador decimal de 7 segmentos con incremento por boton por flanco de subida
 	  /*
 	  ba = HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_3);
-	  if (ba == 1 && bp == 0) { //Detecta flanco de bajada
+	  if (ba == 1 && bp == 0) { //Detecta flanco de subida
 		  valor++;
 		  if (valor > 9) valor = 0;
 	  	  HAL_Delay(50);
@@ -138,20 +138,20 @@ int main(void) {
 	  } */
 
 	  // Program 2 con error
-
+	  /*
 	  valor = GPIOB -> IDR; //Leemos el PUERTOB
 	  valor = (valor >> 3) & 0x0f; //Recorremos 3 bits derecha y enmascaramos los 4 bits menos significativos
 	  if (valor > 9) valor = 10;
 	  temporal = (GPIOB -> ODR) & mascarab6ab3; //La mascara 1111000 es usada para no afectar b3 a b6
 	  GPIOB -> ODR = temporal | (disp7segs[valor] << 7); //El patron del display se recorre 7 bits paralos pines correctos
-
+	  */
 
 	  // Program 1
-	  /*
+
 	  GPIOB -> ODR = disp7segs[valor] << (7);
 	  HAL_Delay(1000);
 	  valor++;
-	  if (valor>9) valor=0; */
+	  if (valor>9) valor=0;
 	  /* USER CODE END WHILE */
 
 	  /* USER CODE BEGIN 3 */
@@ -160,17 +160,7 @@ int main(void) {
 }
 
 //Inicia funcion
-void boton(void) {
-	ba=HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_3);
-	if (ba!=bp) {
-		if (bp) { //if (bp==1) ocurrio flanco de bajada
-			valor++;
-			if (valor>9) valor=0;
-		}
-		HAL_Delay(50); //Estado estable
-	}
-	bp=ba;
-}
+
 //Termina funcion
 
 /**
@@ -244,7 +234,17 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-
+void boton(void) {
+	ba=HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_3);
+	if (ba!=bp) {
+		if (bp) { //if (bp==1) ocurrio flanco de bajada
+			valor++;
+			if (valor>9) valor=0;
+		}
+		HAL_Delay(50); //Estado estable
+	}
+	bp=ba;
+}
 /* USER CODE END 4 */
 
 /**

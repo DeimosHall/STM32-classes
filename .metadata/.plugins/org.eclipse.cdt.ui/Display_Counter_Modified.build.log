@@ -1,0 +1,10 @@
+00:11:29 **** Incremental Build of configuration Debug for project Display_Counter_Modified ****
+make -j4 all 
+arm-none-eabi-size   Display_Counter_Modified.elf 
+   text	   data	    bss	    dec	    hex	filename
+   3664	     64	   1576	   5304	   14b8	Display_Counter_Modified.elf
+Finished building: default.size.stdout
+ 
+
+00:11:29 Build Finished. 0 errors, 0 warnings. (took 538ms)
+
