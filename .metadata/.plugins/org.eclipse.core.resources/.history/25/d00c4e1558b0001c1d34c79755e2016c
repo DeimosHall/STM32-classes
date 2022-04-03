@@ -48,7 +48,7 @@
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
-void btnDown(void);
+void boton(void);
 void btnUp(void);
 /* USER CODE BEGIN PFP */
 
@@ -96,9 +96,9 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1) {
     /* USER CODE END WHILE */
-	btnDown();
+	boton();
 	btnUp();
-	GPIOB -> ODR = (disp7segs[valor] << 4);
+	GPIOB->ODR=(disp7segs[valor]<<4);
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
@@ -179,7 +179,7 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-void btnDown(void) {
+void boton(void) {
 	ba = HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_4);
 	if (ba == 1 && bp == 0) { //Detecta flanco de subida
 	valor--;

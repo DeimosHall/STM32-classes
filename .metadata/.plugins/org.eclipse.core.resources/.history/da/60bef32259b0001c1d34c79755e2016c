@@ -98,7 +98,7 @@ int main(void)
     /* USER CODE END WHILE */
 	btnDown();
 	btnUp();
-	GPIOB -> ODR = (disp7segs[valor] << 4);
+	GPIOB->ODR=(disp7segs[valor]<<4);
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */

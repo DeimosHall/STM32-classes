@@ -31,7 +31,6 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-#define mascara (uint32_t) 0b110000
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -48,24 +47,27 @@
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
-void btnDown(void);
-void btnUp(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+
+//Definicion del prototipo
+void boton(void);
+
+#define mascarab6ab3 (uint32_t) 0b1111000
 uint32_t disp7segs[] = {0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x67,0x79};
 uint32_t valor = 0, temporal = 0, ba = 1, bp = 1;
+
 /* USER CODE END 0 */
 
 /**
   * @brief  The application entry point.
   * @retval int
   */
-int main(void)
-{
+int main(void) {
   /* USER CODE BEGIN 1 */
 
   /* USER CODE END 1 */
@@ -95,14 +97,71 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1) {
-    /* USER CODE END WHILE */
-	btnDown();
-	btnUp();
-	GPIOB -> ODR = (disp7segs[valor] << 4);
-    /* USER CODE BEGIN 3 */
+
+	  // Program 5 Contador decimal de 7 segmentos con incremento por boton por flanco de bajada
+	  /*
+	  boton();
+	  temporal=(GPIOB->ODR)&mascarab6ab3; //La mascara 1111000 es usada para no afectar b3 a b6
+	  GPIOB->ODR=temporal | (disp7segs[valor]<<7); //El patron del display se recorre 7 bits para los pines correctos */
+
+	  // Program 4 Contador decimal de 7 segmentos con incremento por boton por flanco de subida
+	  /*
+	  ba = HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_3);
+	  if (ba == 1 && bp == 0) { //Detecta flanco de subida
+		  valor++;
+		  if (valor > 9) valor = 0;
+	  	  HAL_Delay(50);
+	  }
+	  temporal = (GPIOB -> ODR) & mascarab6ab3; //La mascara 1111000 es usada para no afectar b3 a b6
+	  GPIOB -> ODR = temporal | (disp7segs[valor] << 7); //El patron del display se recorre 7 bits para los pines correctos
+	  bp = ba; */
+
+
+	  // Program 3
+	  /*
+	  if (HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_3)==0) //Por nivel
+	  valor++;
+	  if (valor>9) valor=0;
+	  temporal=(GPIOB->ODR)&mascarab6ab3; //La mascara 1111000 es usada para no afectar b3 a b6
+	  GPIOB->ODR=temporal | (disp7segs[valor]<<7); //El patron del display se recorre 7 bits para los pines correctos
+	  */
+
+	  // Program 2 con error
+	  /*
+	  valor = GPIOB -> IDR; //Leemos el PUERTOB
+	  valor = (valor >> 3) & 0x0f; //Recorremos 3 bits derecha y enmascaramos los 4 bits menos significativos
+	  temporal = (GPIOB -> ODR) & mascarab6ab3; //La mascara 1111000 es usada para no afectar b3 a b6
+	  if (valor << 3 <= 10) {
+		  GPIOB -> ODR = temporal | (disp7segs[valor] << 7);
+	  } else {
+		  GPIOB -> ODR = temporal | (disp7segs[10] << 7);
+	  } */
+
+	  // Program 2 con error
+	  /*
+	  valor = GPIOB -> IDR; //Leemos el PUERTOB
+	  valor = (valor >> 3) & 0x0f; //Recorremos 3 bits derecha y enmascaramos los 4 bits menos significativos
+	  if (valor > 9) valor = 10;
+	  temporal = (GPIOB -> ODR) & mascarab6ab3; //La mascara 1111000 es usada para no afectar b3 a b6
+	  GPIOB -> ODR = temporal | (disp7segs[valor] << 7); //El patron del display se recorre 7 bits paralos pines correctos
+	  */
+
+	  // Program 1
+
+	  GPIOB -> ODR = disp7segs[valor] << (7);
+	  HAL_Delay(1000);
+	  valor++;
+	  if (valor>9) valor=0;
+	  /* USER CODE END WHILE */
+
+	  /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
 }
+
+//Inicia funcion
+
+//Termina funcion
 
 /**
   * @brief System Clock Configuration
@@ -118,11 +177,7 @@ void SystemClock_Config(void)
   */
   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
-  RCC_OscInitStruct.HSEPredivValue = RCC_HSE_PREDIV_DIV1;
-  RCC_OscInitStruct.HSIState = RCC_HSI_ON;
-  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
-  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
-  RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL9;
+  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
     Error_Handler();
@@ -132,12 +187,12 @@ void SystemClock_Config(void)
   */
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
-  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
+  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_HSE;
   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
-  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
+  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
 
-  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
+  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_0) != HAL_OK)
   {
     Error_Handler();
   }
@@ -154,49 +209,41 @@ static void MX_GPIO_Init(void)
 
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOD_CLK_ENABLE();
-  __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
+  __HAL_RCC_GPIOA_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10|GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_6
+  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10|GPIO_PIN_11|GPIO_PIN_12|GPIO_PIN_13
                           |GPIO_PIN_7|GPIO_PIN_8|GPIO_PIN_9, GPIO_PIN_RESET);
 
-  /*Configure GPIO pins : PA4 PA5 */
-  GPIO_InitStruct.Pin = GPIO_PIN_4|GPIO_PIN_5;
-  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_PULLDOWN;
-  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-
-  /*Configure GPIO pins : PB10 PB4 PB5 PB6
+  /*Configure GPIO pins : PB10 PB11 PB12 PB13
                            PB7 PB8 PB9 */
-  GPIO_InitStruct.Pin = GPIO_PIN_10|GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_6
+  GPIO_InitStruct.Pin = GPIO_PIN_10|GPIO_PIN_11|GPIO_PIN_12|GPIO_PIN_13
                           |GPIO_PIN_7|GPIO_PIN_8|GPIO_PIN_9;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
+  /*Configure GPIO pins : PB3 PB4 PB5 PB6 */
+  GPIO_InitStruct.Pin = GPIO_PIN_3|GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_6;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
+  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+
 }
 
 /* USER CODE BEGIN 4 */
-void btnDown(void) {
-	ba = HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_4);
-	if (ba == 1 && bp == 0) { //Detecta flanco de subida
-	valor--;
-	if (valor > 9) valor = 0;
-	HAL_Delay(300);
+void boton(void) {
+	ba=HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_3);
+	if (ba!=bp) {
+		if (bp) { //if (bp==1) ocurrio flanco de bajada
+			valor++;
+			if (valor>9) valor=0;
+		}
+		HAL_Delay(50); //Estado estable
 	}
-	bp = ba;
-}
-
-void btnUp(void) {
-	ba = HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_5);
-	if (ba == 1 && bp == 0) { //Detecta flanco de subida
-	valor++;
-	if (valor > 9) valor = 0;
-	HAL_Delay(300);
-	}
-	bp = ba;
+	bp=ba;
 }
 /* USER CODE END 4 */
 
