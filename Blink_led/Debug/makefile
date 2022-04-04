@@ -60,8 +60,8 @@ all: main-build
 main-build: Blink_led.elf secondary-outputs
 
 # Tool invocations
-Blink_led.elf Blink_led.map: $(OBJS) $(USER_OBJS) C:\Workspace\ STM32\Embebidos\Blink_led\STM32F103C8TX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "Blink_led.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"C:\Workspace STM32\Embebidos\Blink_led\STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Blink_led.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Blink_led.elf Blink_led.map: $(OBJS) $(USER_OBJS) /home/deimos/STM32CubeIDE/Embedded\ system\ processors/STM32-classes/Blink_led/STM32F103C8TX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "Blink_led.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"/home/deimos/STM32CubeIDE/Embedded system processors/STM32-classes/Blink_led/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Blink_led.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

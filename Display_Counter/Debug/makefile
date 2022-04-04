@@ -60,8 +60,8 @@ all: main-build
 main-build: Display_Counter.elf secondary-outputs
 
 # Tool invocations
-Display_Counter.elf Display_Counter.map: $(OBJS) $(USER_OBJS) /home/deimos/STM32CubeIDE/Embedded\ systems\ processors/STM32-classes/Display_Counter/STM32F103C8TX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "Display_Counter.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"/home/deimos/STM32CubeIDE/Embedded systems processors/STM32-classes/Display_Counter/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Display_Counter.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Display_Counter.elf Display_Counter.map: $(OBJS) $(USER_OBJS) /home/deimos/STM32CubeIDE/Embedded\ system\ processors/STM32-classes/Display_Counter/STM32F103C8TX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "Display_Counter.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"/home/deimos/STM32CubeIDE/Embedded system processors/STM32-classes/Display_Counter/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Display_Counter.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
