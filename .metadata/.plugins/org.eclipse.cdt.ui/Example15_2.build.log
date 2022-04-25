@@ -1,0 +1,17 @@
+23:11:20 **** Incremental Build of configuration Debug for project Example15_2 ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -I/home/deimos/Documents/MyLibPrueba/Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "Example15_2.elf" @"objects.list"   -mcpu=cortex-m3 -T"/home/deimos/STM32CubeIDE/Embedded system processors/STM32-classes/Example15_2/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Example15_2.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Example15_2.elf
+ 
+arm-none-eabi-size   Example15_2.elf 
+arm-none-eabi-objdump -h -S  Example15_2.elf  > "Example15_2.list"
+   text	   data	    bss	    dec	    hex	filename
+   4716	     20	   1572	   6308	   18a4	Example15_2.elf
+Finished building: default.size.stdout
+ 
+Finished building: Example15_2.list
+ 
+
+23:11:22 Build Finished. 0 errors, 0 warnings. (took 1s.254ms)
+

@@ -29,4 +29,16 @@
 		<nature>org.eclipse.cdt.managedbuilder.core.managedBuildNature</nature>
 		<nature>org.eclipse.cdt.managedbuilder.core.ScannerConfigNature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>MyLibPrueba</name>
+			<type>2</type>
+			<location>/home/deimos/Documents/MyLibPrueba</location>
+		</link>
+		<link>
+			<name>Src</name>
+			<type>2</type>
+			<location>/home/deimos/Documents/MyLibPrueba/Src</location>
+		</link>
+	</linkedResources>
 </projectDescription>
