@@ -1,0 +1,87 @@
+01:23:09 **** Incremental Build of configuration Debug for project Screen ****
+make -j16 all 
+arm-none-eabi-gcc "/home/deimos/STM32CubeIDE/Embedded system processors/STM32-classes/Libraries/LibreriaLCDKP/src/lcd.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -I"/home/deimos/STM32CubeIDE/Embedded system processors/STM32-classes/Libraries/LibreriaLCDKP/inc" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"LibreriaLCDKP/src/lcd.d" -MT"LibreriaLCDKP/src/lcd.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "LibreriaLCDKP/src/lcd.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -I"/home/deimos/STM32CubeIDE/Embedded system processors/STM32-classes/Libraries/LibreriaLCDKP/inc" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:94:3: warning: implicit declaration of function 'sprintf' [-Wimplicit-function-declaration]
+   94 |   sprintf(str_num_entero, "val=%3d", num_entero);
+      |   ^~~~~~~
+../Core/Src/main.c:94:3: warning: incompatible implicit declaration of built-in function 'sprintf'
+../Core/Src/main.c:26:1: note: include '<stdio.h>' or provide a declaration of 'sprintf'
+   25 | #include "keypad.h"
+  +++ |+#include <stdio.h>
+   26 | /* USER CODE END Includes */
+../Core/Src/main.c:94:34: warning: format '%d' expects argument of type 'int', but argument 3 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+   94 |   sprintf(str_num_entero, "val=%3d", num_entero);
+      |                                ~~^   ~~~~~~~~~~
+      |                                  |   |
+      |                                  int uint32_t {aka long unsigned int}
+      |                                %3ld
+../Core/Src/main.c:111:12: warning: pointer targets in passing argument 1 of 'lcd_puts' differ in signedness [-Wpointer-sign]
+  111 |   lcd_puts("Hello World!",12);
+      |            ^~~~~~~~~~~~~~
+      |            |
+      |            char *
+In file included from ../Core/Src/main.c:24:
+/home/deimos/STM32CubeIDE/Embedded system processors/STM32-classes/Libraries/LibreriaLCDKP/inc/lcd.h:117:15: note: expected 'unsigned char *' but argument is of type 'char *'
+  117 | void lcd_puts(unsigned char*, unsigned char); //Outputs string to LCD
+      |               ^~~~~~~~~~~~~~
+../Core/Src/main.c:113:12: warning: pointer targets in passing argument 1 of 'lcd_puts' differ in signedness [-Wpointer-sign]
+  113 |   lcd_puts(str_num_entero,7);
+      |            ^~~~~~~~~~~~~~
+      |            |
+      |            char *
+In file included from ../Core/Src/main.c:24:
+/home/deimos/STM32CubeIDE/Embedded system processors/STM32-classes/Libraries/LibreriaLCDKP/inc/lcd.h:117:15: note: expected 'unsigned char *' but argument is of type 'char *'
+  117 | void lcd_puts(unsigned char*, unsigned char); //Outputs string to LCD
+      |               ^~~~~~~~~~~~~~
+../Core/Src/main.c:115:12: warning: pointer targets in passing argument 1 of 'lcd_puts' differ in signedness [-Wpointer-sign]
+  115 |   lcd_puts(str_entera,2);
+      |            ^~~~~~~~~~
+      |            |
+      |            char *
+In file included from ../Core/Src/main.c:24:
+/home/deimos/STM32CubeIDE/Embedded system processors/STM32-classes/Libraries/LibreriaLCDKP/inc/lcd.h:117:15: note: expected 'unsigned char *' but argument is of type 'char *'
+  117 | void lcd_puts(unsigned char*, unsigned char); //Outputs string to LCD
+      |               ^~~~~~~~~~~~~~
+../Core/Src/main.c:117:12: warning: pointer targets in passing argument 1 of 'lcd_puts' differ in signedness [-Wpointer-sign]
+  117 |   lcd_puts(str_frac,2);
+      |            ^~~~~~~~
+      |            |
+      |            char *
+In file included from ../Core/Src/main.c:24:
+/home/deimos/STM32CubeIDE/Embedded system processors/STM32-classes/Libraries/LibreriaLCDKP/inc/lcd.h:117:15: note: expected 'unsigned char *' but argument is of type 'char *'
+  117 | void lcd_puts(unsigned char*, unsigned char); //Outputs string to LCD
+      |               ^~~~~~~~~~~~~~
+../Core/Src/main.c:94:35: warning: 'sprintf' writing a terminating nul past the end of the destination [-Wformat-overflow=]
+   94 |   sprintf(str_num_entero, "val=%3d", num_entero);
+      |                                   ^
+../Core/Src/main.c:94:3: note: 'sprintf' output between 8 and 16 bytes into a destination of size 7
+   94 |   sprintf(str_num_entero, "val=%3d", num_entero);
+      |   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:104:27: warning: 'sprintf' writing a terminating nul past the end of the destination [-Wformat-overflow=]
+  104 |   sprintf(str_entera, "%2d",p_entera);
+      |                           ^
+../Core/Src/main.c:104:3: note: 'sprintf' output between 3 and 4 bytes into a destination of size 2
+  104 |   sprintf(str_entera, "%2d",p_entera);
+      |   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:105:25: warning: 'sprintf' writing a terminating nul past the end of the destination [-Wformat-overflow=]
+  105 |   sprintf(str_frac, "%2d",p_frac); //Conversion de flotante a string
+      |                         ^
+../Core/Src/main.c:105:3: note: 'sprintf' output between 3 and 4 bytes into a destination of size 2
+  105 |   sprintf(str_frac, "%2d",p_frac); //Conversion de flotante a string
+      |   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arm-none-eabi-gcc -o "Screen.elf" @"objects.list"   -mcpu=cortex-m3 -T"/home/deimos/STM32CubeIDE/Embedded system processors/STM32-classes/Screen/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Screen.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Screen.elf
+ 
+arm-none-eabi-size   Screen.elf 
+arm-none-eabi-objdump -h -S  Screen.elf  > "Screen.list"
+   text	   data	    bss	    dec	    hex	filename
+  10812	    120	   1592	  12524	   30ec	Screen.elf
+Finished building: default.size.stdout
+ 
+Finished building: Screen.list
+ 
+
+01:23:10 Build Finished. 0 errors, 10 warnings. (took 1s.361ms)
+
