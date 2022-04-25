@@ -1,5 +1,5 @@
 LibreriaLCDKP/src/lcd.o: \
- /home/deimos/STM32CubeIDE/Embedded\ system\ processors/STM32-classes/Libraries/LibreriaLCDKP/src/lcd.c \
+ /home/deimos/STM32CubeIDE/STM32-classes/Libraries/LibreriaLCDKP/src/lcd.c \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h \
  ../Core/Inc/stm32f1xx_hal_conf.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h \
@@ -22,7 +22,7 @@ LibreriaLCDKP/src/lcd.o: \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h \
- /home/deimos/STM32CubeIDE/Embedded\ system\ processors/STM32-classes/Libraries/LibreriaLCDKP/inc/lcd.h \
+ /home/deimos/STM32CubeIDE/STM32-classes/Libraries/LibreriaLCDKP/inc/lcd.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:
 ../Core/Inc/stm32f1xx_hal_conf.h:
@@ -46,5 +46,5 @@ LibreriaLCDKP/src/lcd.o: \
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h:
-/home/deimos/STM32CubeIDE/Embedded\ system\ processors/STM32-classes/Libraries/LibreriaLCDKP/inc/lcd.h:
+/home/deimos/STM32CubeIDE/STM32-classes/Libraries/LibreriaLCDKP/inc/lcd.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h:

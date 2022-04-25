@@ -22,10 +22,10 @@
 #define  	COL2_PORT		GPIOB
 
 #define		COL3_PIN		GPIO_PIN_13		//	PB13
-#define  	COL3_PORT		GPIOA
+#define  	COL3_PORT		GPIOB
 
 #define		COL4_PIN		GPIO_PIN_14		//	PB14
-#define  	COL4_PORT		GPIOA
+#define  	COL4_PORT		GPIOB
 
 void keypad_init(void);
 char keypad_read(void);

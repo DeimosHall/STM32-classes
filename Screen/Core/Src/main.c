@@ -18,11 +18,12 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "lcd.h"
+#include "keypad.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "lcd.h"
-#include "keypad.h"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -49,6 +50,7 @@
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 /* USER CODE BEGIN PFP */
+
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -84,15 +86,13 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  /* USER CODE BEGIN 2 */
+
   keypad_init();
-
-  HAL_Delay(10); //Estabilizacion
-
+  HAL_Delay(10);
+  //Estabilizacion
   uint32_t num_entero=9;
   char str_num_entero[7]; //Guardar como string
   sprintf(str_num_entero, "val=%3d", num_entero);
-
   //Conversion de flotante a string
   float num_f=3.7,temporal_frac;
   uint8_t p_entera,p_frac;
@@ -102,10 +102,10 @@ int main(void)
   temporal_frac=(num_f-p_entera)*100; //.7*100=70
   p_frac=(uint8_t)temporal_frac;
   sprintf(str_entera, "%2d",p_entera);
-  sprintf(str_frac, "%2d",p_frac); //Conversion de flotante a string
-
-  lcd_init(); //Inicializa LCD
-
+  sprintf(str_frac, "%2d",p_frac);
+  //Conversion de flotante a string
+  lcd_init();
+  //Inicializa LCD
   lcd_command(DISPLAY_ON_D_OFF_C_ON_B);
   lcd_gotoxy(1,1);
   lcd_puts("Hello World!",12);
@@ -119,11 +119,16 @@ int main(void)
   HAL_Delay(20000);
   lcd_clear(); //Borra pantalla
   char tecla;
+
+  /* USER CODE BEGIN 2 */
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  while (1) {
+  while (1)
+  {
+    /* USER CODE END WHILE */
 	  if (tecla=='#')
 	  lcd_gotoxy(1,2); //Brinca a segunda linea
 	  tecla=keypad_read();
@@ -131,8 +136,6 @@ int main(void)
 	  lcd_putc(tecla);
 	  if (tecla=='*')
 	  lcd_command(CURSOR_MOVE_LEFT);
-    /* USER CODE END WHILE */
-
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */

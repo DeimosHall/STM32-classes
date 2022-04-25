@@ -1,0 +1,79 @@
+16:29:46 **** Incremental Build of configuration Debug for project Screen2 ****
+make -j4 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -I/home/deimos/Documents/LibreriaLCDKP/inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:131:3: warning: implicit declaration of function 'sprintf' [-Wimplicit-function-declaration]
+  131 |   sprintf(str_entera, "%3d",p_entera);
+      |   ^~~~~~~
+../Core/Src/main.c:131:3: warning: incompatible implicit declaration of built-in function 'sprintf'
+../Core/Src/main.c:26:1: note: include '<stdio.h>' or provide a declaration of 'sprintf'
+   25 | #include "keypad.h"
+  +++ |+#include <stdio.h>
+   26 | /* USER CODE END Includes */
+../Core/Src/main.c:131:26: warning: format '%d' expects argument of type 'int', but argument 3 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+  131 |   sprintf(str_entera, "%3d",p_entera);
+      |                        ~~^  ~~~~~~~~
+      |                          |  |
+      |                          |  uint32_t {aka long unsigned int}
+      |                          int
+      |                        %3ld
+../Core/Src/main.c:132:24: warning: format '%d' expects argument of type 'int', but argument 3 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+  132 |   sprintf(str_frac, "%3d",p_frac);
+      |                      ~~^  ~~~~~~
+      |                        |  |
+      |                        |  uint32_t {aka long unsigned int}
+      |                        int
+      |                      %3ld
+../Core/Src/main.c:188:14: warning: pointer targets in passing argument 1 of 'lcd_puts' differ in signedness [-Wpointer-sign]
+  188 |     lcd_puts("Hello World :D",14);
+      |              ^~~~~~~~~~~~~~~~
+      |              |
+      |              char *
+In file included from ../Core/Src/main.c:24:
+/home/deimos/Documents/LibreriaLCDKP/inc/lcd.h:121:15: note: expected 'unsigned char *' but argument is of type 'char *'
+  121 | void lcd_puts(unsigned char*, unsigned char); //Outputs string to LCD
+      |               ^~~~~~~~~~~~~~
+../Core/Src/main.c:191:14: warning: pointer targets in passing argument 1 of 'lcd_puts' differ in signedness [-Wpointer-sign]
+  191 |     lcd_puts(str_entera,3);
+      |              ^~~~~~~~~~
+      |              |
+      |              char *
+In file included from ../Core/Src/main.c:24:
+/home/deimos/Documents/LibreriaLCDKP/inc/lcd.h:121:15: note: expected 'unsigned char *' but argument is of type 'char *'
+  121 | void lcd_puts(unsigned char*, unsigned char); //Outputs string to LCD
+      |               ^~~~~~~~~~~~~~
+../Core/Src/main.c:193:14: warning: pointer targets in passing argument 1 of 'lcd_puts' differ in signedness [-Wpointer-sign]
+  193 |     lcd_puts(str_frac,3);
+      |              ^~~~~~~~
+      |              |
+      |              char *
+In file included from ../Core/Src/main.c:24:
+/home/deimos/Documents/LibreriaLCDKP/inc/lcd.h:121:15: note: expected 'unsigned char *' but argument is of type 'char *'
+  121 | void lcd_puts(unsigned char*, unsigned char); //Outputs string to LCD
+      |               ^~~~~~~~~~~~~~
+../Core/Src/main.c:131:27: warning: 'sprintf' writing a terminating nul past the end of the destination [-Wformat-overflow=]
+  131 |   sprintf(str_entera, "%3d",p_entera);
+      |                           ^
+../Core/Src/main.c:131:3: note: 'sprintf' output between 4 and 12 bytes into a destination of size 3
+  131 |   sprintf(str_entera, "%3d",p_entera);
+      |   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:132:25: warning: 'sprintf' writing a terminating nul past the end of the destination [-Wformat-overflow=]
+  132 |   sprintf(str_frac, "%3d",p_frac);
+      |                         ^
+../Core/Src/main.c:132:3: note: 'sprintf' output between 4 and 12 bytes into a destination of size 3
+  132 |   sprintf(str_frac, "%3d",p_frac);
+      |   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arm-none-eabi-gcc -o "Screen2.elf" @"objects.list"   -mcpu=cortex-m3 -T"/home/deimos/STM32CubeIDE/STM32-classes/Screen2/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Screen2.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Screen2.elf
+ 
+arm-none-eabi-size   Screen2.elf 
+arm-none-eabi-objdump -h -S  Screen2.elf  > "Screen2.list"
+   text	   data	    bss	    dec	    hex	filename
+  10852	    120	   1592	  12564	   3114	Screen2.elf
+Finished building: default.size.stdout
+ 
+Finished building: Screen2.list
+ 
+
+16:29:47 Build Finished. 0 errors, 9 warnings. (took 1s.75ms)
+

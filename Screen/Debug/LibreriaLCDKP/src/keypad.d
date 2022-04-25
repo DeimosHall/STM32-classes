@@ -1,5 +1,5 @@
 LibreriaLCDKP/src/keypad.o: \
- /home/deimos/STM32CubeIDE/Embedded\ system\ processors/STM32-classes/Libraries/LibreriaLCDKP/src/keypad.c \
+ /home/deimos/STM32CubeIDE/STM32-classes/Libraries/LibreriaLCDKP/src/keypad.c \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h \
  ../Core/Inc/stm32f1xx_hal_conf.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h \
@@ -22,7 +22,7 @@ LibreriaLCDKP/src/keypad.o: \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h \
- /home/deimos/STM32CubeIDE/Embedded\ system\ processors/STM32-classes/Libraries/LibreriaLCDKP/inc/keypad.h
+ /home/deimos/STM32CubeIDE/STM32-classes/Libraries/LibreriaLCDKP/inc/keypad.h
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:
 ../Core/Inc/stm32f1xx_hal_conf.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h:
@@ -45,4 +45,4 @@ LibreriaLCDKP/src/keypad.o: \
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h:
-/home/deimos/STM32CubeIDE/Embedded\ system\ processors/STM32-classes/Libraries/LibreriaLCDKP/inc/keypad.h:
+/home/deimos/STM32CubeIDE/STM32-classes/Libraries/LibreriaLCDKP/inc/keypad.h:

@@ -33,7 +33,7 @@
 		<link>
 			<name>LibreriaLCDKP</name>
 			<type>2</type>
-			<location>/home/deimos/STM32CubeIDE/Embedded system processors/STM32-classes/Libraries/LibreriaLCDKP</location>
+			<location>/home/deimos/STM32CubeIDE/STM32-classes/Libraries/LibreriaLCDKP</location>
 		</link>
 	</linkedResources>
 </projectDescription>

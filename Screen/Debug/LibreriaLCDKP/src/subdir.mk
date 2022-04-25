@@ -5,8 +5,8 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
-/home/deimos/STM32CubeIDE/Embedded\ system\ processors/STM32-classes/Libraries/LibreriaLCDKP/src/keypad.c \
-/home/deimos/STM32CubeIDE/Embedded\ system\ processors/STM32-classes/Libraries/LibreriaLCDKP/src/lcd.c 
+/home/deimos/STM32CubeIDE/STM32-classes/Libraries/LibreriaLCDKP/src/keypad.c \
+/home/deimos/STM32CubeIDE/STM32-classes/Libraries/LibreriaLCDKP/src/lcd.c 
 
 OBJS += \
 ./LibreriaLCDKP/src/keypad.o \
@@ -18,10 +18,10 @@ C_DEPS += \
 
 
 # Each subdirectory must supply rules for building sources it contributes
-LibreriaLCDKP/src/keypad.o: /home/deimos/STM32CubeIDE/Embedded\ system\ processors/STM32-classes/Libraries/LibreriaLCDKP/src/keypad.c LibreriaLCDKP/src/subdir.mk
-	arm-none-eabi-gcc "$<" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -I"/home/deimos/STM32CubeIDE/Embedded system processors/STM32-classes/Libraries/LibreriaLCDKP/inc" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfloat-abi=soft -mthumb -o "$@"
-LibreriaLCDKP/src/lcd.o: /home/deimos/STM32CubeIDE/Embedded\ system\ processors/STM32-classes/Libraries/LibreriaLCDKP/src/lcd.c LibreriaLCDKP/src/subdir.mk
-	arm-none-eabi-gcc "$<" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -I"/home/deimos/STM32CubeIDE/Embedded system processors/STM32-classes/Libraries/LibreriaLCDKP/inc" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfloat-abi=soft -mthumb -o "$@"
+LibreriaLCDKP/src/keypad.o: /home/deimos/STM32CubeIDE/STM32-classes/Libraries/LibreriaLCDKP/src/keypad.c LibreriaLCDKP/src/subdir.mk
+	arm-none-eabi-gcc "$<" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -I"/home/deimos/STM32CubeIDE/Embedded system processors/STM32-classes/Libraries/LibreriaLCDKP/inc" -I/home/deimos/STM32CubeIDE/STM32-classes/Libraries/LibreriaLCDKP/inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfloat-abi=soft -mthumb -o "$@"
+LibreriaLCDKP/src/lcd.o: /home/deimos/STM32CubeIDE/STM32-classes/Libraries/LibreriaLCDKP/src/lcd.c LibreriaLCDKP/src/subdir.mk
+	arm-none-eabi-gcc "$<" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -I"/home/deimos/STM32CubeIDE/Embedded system processors/STM32-classes/Libraries/LibreriaLCDKP/inc" -I/home/deimos/STM32CubeIDE/STM32-classes/Libraries/LibreriaLCDKP/inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfloat-abi=soft -mthumb -o "$@"
 
 clean: clean-LibreriaLCDKP-2f-src
 
